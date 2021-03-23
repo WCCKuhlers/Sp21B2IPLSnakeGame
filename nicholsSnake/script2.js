@@ -10,7 +10,7 @@ function setup() {
     noLoop();
     gamePlay = false;
     createCanvas(400, 480);
-    frameRate(30);
+    frameRate(5);
     score = 0;
     bestScore = loadBestScore();
 
@@ -35,7 +35,7 @@ function draw() {
         drawSnake();
     }   else {
         textAllign(CENTER);
-        text('Press UP, RIGHT, or DOWN keys to begin', width/ 2, height / 2);
+        text('Press UP, RIGHT, or DOWN keys to begin', width / 2, height / 2);
         fill(0, 255, 0);
         for(var i = 0; i <snakeArray.length; i++) {
             rect(snakeArray[1].xPos, snakeArray[i].yPos, 19, 19);
@@ -66,7 +66,7 @@ function displayScore() {
     text(bestScore, 340, 27);
 }
 
-function makeSnakePiece() {
+/*function makeSnakePiece() {
     snakePiece = {
         xPos: x,
         yPos: y
@@ -154,7 +154,14 @@ function hittingitself() {
 
 function moveApple() {
     // var randomX = Math.Floor(Math.random() * width / 20) * 20;
-}
+    // var randomY = Math.floor(Math.random() * (height - 40) / 20) * 20 + 40;
+    var randomX = Math.floor(Math.random() * width / 20) * 20;
+    var randomY = Math.floor(Math.random() * (height-40) /20) * 20 + 40;
+    var appleOnSnake = snakeArray.filter(function(snakePiece)) {
+        // console.log(snakePiece.xPos + "" + snakePiece.yPos);
+        return snakePiece.xPos == randomX && snakePiece.yPos == randomY;
+    }
+}*/
 
 function addApple() {
     fill(255, 0, 0);
