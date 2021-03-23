@@ -12,15 +12,15 @@ function setup() {
     createCanvis(400, 480);
     frameRate(5);
     score = 0;
-    bestScore = loadBestScore()
+    bestScore = loadBestScore();
 
     snakeArray = [];
     makeSnakePiece(60,200);
     makeSnakePiece(40,200);
     makeSnakePiece(20,200);
 
-    AppleX = 200
-    AppleY = 200
+    AppleX = 200;
+    AppleY = 200;
 
     direction = "RIGHT";
     
