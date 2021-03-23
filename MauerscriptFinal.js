@@ -205,3 +205,5 @@ function gameOver() {
         storeItem('bestScore', score);
     }
 }
+
+

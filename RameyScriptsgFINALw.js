@@ -2,14 +2,14 @@ var direction;
 var score;
 var bestScore;
 var snakeArray;
-var gamePlay;
+var gamePlaying;
 var appleX;
 var appleY;
 
 function setup() {
     noLoop();
-    gamePlay = false;
-    createCanvis(400, 480);
+    gamePlaying = false;
+    createCanvas(400, 480);
     frameRate(5);
     score = 0;
     bestScore = loadBestScore();
@@ -19,8 +19,8 @@ function setup() {
     makeSnakePiece(40,200);
     makeSnakePiece(20,200);
 
-    AppleX = 200;
-    AppleY = 200;
+    appleX = 200;
+    appleY = 200;
 
     direction = "RIGHT";
     
@@ -30,19 +30,18 @@ function setup() {
 function draw() {
     background(255);
     displayScore();
-    if(gamePlay) {
+    if(gamePlaying) {
         addApple();
         drawSnake();
     } else {
         textAlign(CENTER);
-        text('Press UP, RIGHT, or DOWN arrow keys to begin', width / 2, hight / 2);
+        text('Press UP, RIGHT, or DOWN arrow keys to begin', width / 2, height / 2);
+        fill(0, 255, 0);
         for(var i = 0; i < snakeArray.length; i++) {
             rect(snakeArray[i].xPos, snakeArray[i].yPos, 19,19);
         }
         addApple();
-    }
-
-    
+    } 
 }
 
 function loadBestScore() {
@@ -59,7 +58,7 @@ function displayScore() {
     line(0, 480, 400, 480);
     line(0, 0, 400, 0);
     line(400, 0, 400, 480);
-    Fill(0, 102, 153);
+    fill(0, 102, 153);
     textAlign(LEFT);
     text("Score", 30, 27);
     text(score, 100, 27);
@@ -69,14 +68,14 @@ function displayScore() {
 
 function makeSnakePiece(x, y) {
     snakePiece = {
-        xpos: x,
+        xPos: x,
         yPos: y
     };
     append(snakeArray, snakePiece);
 }
 /*
-funtcion drawSnake() {
-   if(!hittingWall() && !hitthingItself()) {
+function drawSnake() {
+   if(!hittingWall() && !hittingItself()) {
     fill(0, 255, 0);
     for(var i = snakeArray.length - 1; i >=1; i--) {
         snakeArray[i].xPos = snakeArray[i-1].xPos;
@@ -111,7 +110,7 @@ function hittingWall() {
     return false;
 }
 
-funtion keyPressed() {
+function keyPressed() {
     if(keyCode == LEFT_ARROW && direction != "RIGHT") {
         direction = "LEFT";
     } else if(keyCode == UP_ARROW && direction != "DOWN") {
@@ -127,15 +126,59 @@ funtion keyPressed() {
     }
 }
 
+function getLocationOfHead() {
+    var headX = snakeArray[0].xPos;
+    var headY = snakeArray[0].yPos;
+    if(direction == "LEFT"){
+        headY -=20;
+    } else if(direction == "UP"){
+        headY -=20;
+    } else if(direction == "RIGHT") {
+        headX +=20;
+    } else if(direction == "DOWN") {
+        headX +=20;
+    }
+    return[headX, headY];
+}
 
+function hiitingItSelf() {
+    var headX = getlocationOfHead()[0];
+    var headY = getLocationOfHead()[1];
+    var allButHead = snakeArray.slice(1);
+    var piecesHit = allButHead.filter(snakePiece => snakePiece.xPos == headX && snakePiece.xPos == headX && snakePiece.yPos == headY).length;
+    return piecesHit;
+}
+
+function moveApple() {
+
+}
 */
 function addApple() {
     fill(255, 0, 0);
     rect(appleX, appleY, 19, 19);
 }
+/*
+function hittingApple() {
+    var headX = getLocationOfHead()[0];
+    var headY = getlocationOfHead()[1];
+    if(headX == appleX && headY == appleY) {
+        console.log('hit');
+        makeSnakePiece(snakeArray[snakeArray.length-1].xPos, snakeArray[snakeArray.length-1].yPos);
+        score++;
+        moveApple();
+    }
+}
 
-
-
+function gameOver() {
+    noLoop();
+    textAlign(CENTER);
+    textSize(36);
+    var gameOverText = text('Game Over', width / 2, height / 2);
+    if(score>bestScore) {
+        storeItem('bestScore', score);
+    }
+}
+*/
 function newGame() {
     setup();
     draw();
