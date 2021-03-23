@@ -6,16 +6,11 @@ var gamePlay;
 var appleX;
 var appleY;
 
-
-
-
-
-
 function setup() {
     noLoop();
     gamePlay = false;
     createCanvas(400, 480);
-    frameRate(5);
+    frameRate(30);
     score = 0;
     bestScore = loadBestScore();
 
@@ -31,10 +26,6 @@ function setup() {
 
     textSize(18);
 }
-
-
-
-
 
 function draw() {
     background(255);
@@ -53,10 +44,6 @@ function draw() {
     }
 }
 
-
-
-
-
 function loadBestScore() {
     var bestScore = getItem('bestScore');
     if(bestScore) {
@@ -64,10 +51,6 @@ function loadBestScore() {
     }
     return 0;
 }
-
-
-
-
 
 function displayScore() {
     line(0, 38, width, 38);
@@ -83,10 +66,6 @@ function displayScore() {
     text(bestScore, 340, 27);
 }
 
-
-
-
-
 function makeSnakePiece(x, y) {
     snakePiece = {
         xPos: x,
@@ -94,7 +73,18 @@ function makeSnakePiece(x, y) {
     };
     append(snakeArray, snakePiece);
 }
-/*
+
+function addApple() {
+    fill(255, 0, 0);
+    rect(appleX, appleY, 19, 19);
+}
+
+function newGame() {
+    setup();
+    draw();
+}
+
+
 function drawSnake() {
     if(!hittingWall() && !hittingItself()) {
         
@@ -121,9 +111,6 @@ function drawSnake() {
     }
 }
 
-
-
-
 function hittingWall() {
     if(direction == "LEFT" && snakeArray[0].xPos == 0) {
         return true;
@@ -136,10 +123,6 @@ function hittingWall() {
     }
     return false;
 }
-
-
-
-
 
 function keyPressed() {
     if (keyCode == LEFT_ARROW && direction != "RIGHT") {
@@ -157,9 +140,6 @@ function keyPressed() {
     }
 }
 
-
-
-
 function getLocationOfHead() {
     var headX = snakeArray[0].xPos;
     var headY = snakeArray[0].yPos;
@@ -175,11 +155,6 @@ function getLocationOfHead() {
     return [headX, headY];
 }
 
-
-
-
-
-
 function hittingItself() {
     var headX = getLocationOfHead()[0];
     var headY = getLocationOfHead()[1];
@@ -187,8 +162,6 @@ function hittingItself() {
     var piecesHit = allButHead.filter(snakePiece => snakePiece.xPos == headX && snakePiece.yPos == headY).length;
     return piecesHit;
 }
-
-
 
 function moveApple() {
     // var randomX = Math.floor(Math.random() * width / 20) * 20;
@@ -209,15 +182,8 @@ function moveApple() {
     appleX = randomX;
     appleY = randomY;
 }
-*/
-function addApple() {
-    fill(255, 0, 0);
-    rect(appleX, appleY, 19, 19);
-}
 
 
-
-/*
 function hittingApple() {
     var headX = getLocationOfHead()[0];
     var headY = getLocationOfHead()[1];
@@ -229,8 +195,6 @@ function hittingApple() {
     }
 }
 
-
-
 function gameOver() {
     noLoop();
     textAlign(CENTER);
@@ -240,9 +204,4 @@ function gameOver() {
     if(score > bestScore) {
         storeItem('bestScore', score);
     }
-}
-*/
-function newGame() {
-    setup();
-    draw();
 }
