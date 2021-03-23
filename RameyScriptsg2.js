@@ -12,15 +12,15 @@ function setup() {
     createCanvis(400, 480);
     frameRate(5);
     score = 0;
-    bestScore = loadBestScore()
+    bestScore = loadBestScore();
 
     snakeArray = [];
     makeSnakePiece(60,200);
     makeSnakePiece(40,200);
     makeSnakePiece(20,200);
 
-    AppleX = 200
-    AppleY = 200
+    AppleX = 200;
+    AppleY = 200;
 
     direction = "RIGHT";
     
@@ -35,7 +35,7 @@ function draw() {
         drawSnake();
     } else {
         textAlign(CENTER);
-        text('Press UP, RIGHT, DOWN arrow keys to begin', width / 2, hight / 2);
+        text('Press UP, RIGHT, or DOWN arrow keys to begin', width / 2, hight / 2);
         for(var i = 0; i < snakeArray.length; i++) {
             rect(snakeArray[i].xPos, snakeArray[i].yPos, 19,19);
         }
@@ -46,7 +46,7 @@ function draw() {
 }
 
 function loadBestScore() {
-    var bestScore = getItem('bestScore')
+    var bestScore = getItem('bestScore');
     if(bestScore) {
         return bestScore;
     }
@@ -63,15 +63,15 @@ function displayScore() {
     textAlign(LEFT);
     text("Score", 30, 27);
     text(score, 100, 27);
-    text("Best Score", 230, 27)
-    text(bestScore, 340, 27)
+    text("Best Score", 230, 27);
+    text(bestScore, 340, 27);
 }
 
 function makeSnakePiece(x, y) {
     snakePiece = {
         xpos: x,
         yPos: y
-    }
+    };
     append(snakeArray, snakePiece);
 }
 /*
